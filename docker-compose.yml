@@ -1,25 +1,18 @@
-db:
-  #build: .
-  image: registry.eu-gb.bluemix.net/ackee/mariadb
+mysql:
+  image: registry.eu-gb.bluemix.net/ackee/marek-wpdb
   environment:
     MYSQL_ROOT_PASSWORD: examplepass
-    S3_ACCESS_KEY: AKIAJF3LAW3HFPTALM7Q 
-    S3_SECRET_KEY: cTLHfI+4PuCYEwj97mRbAYGP11KVffvOE51Nwmol
-    S3_BUCKET_DIR: testmarek 
-  container_name:
-    db_wordpress
   ports:
     - 3306:3306
-#  volumes:
+  volumes:
     # Just specify a path and let the Engine create a volume
- #   - /var/lib/mysql
+    - /var/lib/mysql
 
-wordpress:
-   image: registry.eu-gb.bluemix.net/ackee/wp-pokus
+wp:
+   image: registry.eu-gb.bluemix.net/ackee/marek-wp
    environment:
-     WORDPRESS_DB_PASSWORD: testmarek
-     WORDPRESS_DB_HOST: db_wordpress:3306
-#   links:
- #    - db_wordpress:mysql
+     WORDPRESS_DB_PASSWORD: examplepass
+   links:
+     - mysql:mysql
    ports:
      - 80:80

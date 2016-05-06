@@ -15,6 +15,8 @@ RUN usermod -a -G root www-data
 # See https://github.com/docker/docker/issues/2259, https://github.com/docker/docker/issues/7198
 # Also https://github.com/docker-library/wordpress/issues/97, https://github.com/docker-library/wordpress/issues/132
 
+ADD content.tar.gz /var/www/html/
+
 # Same entrypoint and cmd but docker/ibm containers seems to want us to repeat
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]
