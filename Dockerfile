@@ -7,7 +7,6 @@ FROM wordpress:latest
 # 2. updating the tar command to disable same-owner setting
 # 3. adding chmod command to grant root group write access to wordpress files
 COPY bluemix-entrypoint.sh /entrypoint.sh
-RUN chmod u+x /entrypoint.sh
 # Note: I also folded in env var initialization from VCAP_SERVICES as well
 
 # Add the www-data to the root group to work with wordpress files on volume
